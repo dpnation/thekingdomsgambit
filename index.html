@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Kingdom's Gambit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --midnight:  #0F1B24;
+      --evergreen: #556B5A;
+      --granite:   #A7A59A;
+      --snow:      #F7F7F5;
+      --white:     #FFFFFF;
+
+      --font: 'Inter', system-ui, sans-serif;
+      --tracking-wide: 0.08em;
+      --tracking-wider: 0.14em;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--snow);
+      color: var(--midnight);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 3rem;
+      background: transparent;
+      transition: background 0.3s ease;
+    }
+
+    nav.scrolled {
+      background: rgba(15, 27, 36, 0.96);
+      backdrop-filter: blur(8px);
+    }
+
+    .nav-logo {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: var(--tracking-wide);
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    /* ── Hero ── */
+    #hero {
+      min-height: 100vh;
+      background: var(--midnight);
+      background-image: url('images/IMG_0404.jpg');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: rgba(255,255,255,0.08);
+    }
+
+    /* dark overlay for readability */
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(15,27,36,0.78) 0%,
+        rgba(15,27,36,0.45) 60%,
+        rgba(15,27,36,0.15) 100%
+      );
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 860px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-logo {
+      width: clamp(240px, 40vw, 520px);
+      display: block;
+      margin-bottom: 2rem;
+      filter: brightness(0) invert(1);
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.5);
+      max-width: 520px;
+      line-height: 1.8;
+      margin-bottom: 3rem;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+      padding: 1rem 2rem;
+      border: 1px solid rgba(255,255,255,0.25);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .hero-cta:hover {
+      border-color: var(--evergreen);
+      color: var(--evergreen);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 3rem;
+      font-size: 0.65rem;
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .hero-scroll::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: rgba(255,255,255,0.2);
+    }
+
+    /* ── Section base ── */
+    section {
+      padding: 7rem 3rem;
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--evergreen);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--evergreen);
+    }
+
+    .section-heading {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 300;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      color: var(--midnight);
+      margin-bottom: 1.5rem;
+    }
+
+    .section-body {
+      font-size: 0.95rem;
+      color: var(--granite);
+      max-width: 560px;
+      line-height: 1.9;
+    }
+
+    /* ── Ventures ── */
+    #ventures {
+      background: var(--white);
+    }
+
+    .ventures-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: end;
+      margin-bottom: 5rem;
+    }
+
+    .ventures-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: #E8E7E4;
+    }
+
+    .venture-card {
+      background: var(--white);
+      padding: 2.5rem;
+      transition: background 0.2s;
+    }
+
+    .venture-card:hover {
+      background: var(--snow);
+    }
+
+    .venture-icon {
+      width: 36px;
+      height: 36px;
+      margin-bottom: 1.5rem;
+      opacity: 0.35;
+    }
+
+    .venture-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: var(--tracking-wide);
+      color: var(--midnight);
+      margin-bottom: 0.6rem;
+    }
+
+    .venture-desc {
+      font-size: 0.82rem;
+      color: var(--granite);
+      line-height: 1.7;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      height: 1px;
+      background: #E8E7E4;
+      margin: 0 3rem;
+    }
+
+    /* ── Contact ── */
+    #contact {
+      background: var(--midnight);
+    }
+
+    #contact .section-heading {
+      color: var(--white);
+    }
+
+    #contact .section-body {
+      color: rgba(255,255,255,0.4);
+    }
+
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-field label {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--white);
+      font-family: var(--font);
+      font-size: 0.9rem;
+      padding: 0.85rem 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      appearance: none;
+    }
+
+    .form-field input::placeholder,
+    .form-field textarea::placeholder {
+      color: rgba(255,255,255,0.2);
+    }
+
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      border-color: var(--evergreen);
+    }
+
+    .form-field select option {
+      background: var(--midnight);
+    }
+
+    .form-field textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-submit {
+      display: inline-block;
+      font-family: var(--font);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--evergreen);
+      border: none;
+      padding: 1rem 2rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      align-self: flex-start;
+    }
+
+    .form-submit:hover {
+      background: #4a5f4f;
+    }
+
+    .contact-details {
+      padding-top: 0.5rem;
+    }
+
+    .contact-detail-item {
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-detail-label {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--evergreen);
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-detail-value {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+    }
+
+    .contact-detail-value a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-detail-value a:hover {
+      color: var(--white);
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--midnight);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-mark {
+      font-size: 0.65rem;
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+    }
+
+    .footer-tagline {
+      font-size: 0.65rem;
+      letter-spacing: var(--tracking-wide);
+      color: rgba(255,255,255,0.18);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.5rem 1.75rem; }
+      .nav-links { display: none; }
+
+      section { padding: 5rem 1.75rem; }
+      .divider { margin: 0 1.75rem; }
+
+      #hero { padding: 0 1.75rem; }
+      .hero-scroll { left: 1.75rem; }
+
+      .ventures-header { grid-template-columns: 1fr; gap: 1.5rem; }
+      .ventures-grid { grid-template-columns: 1fr 1fr; }
+
+      .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+
+    @media (max-width: 560px) {
+      .ventures-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Nav ── -->
+  <nav id="nav">
+    <a href="#hero" class="nav-logo">TKG</a>
+    <ul class="nav-links">
+      <li><a href="#ventures">Ventures</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── Hero ── -->
+  <section id="hero">
+    <div class="hero-inner">
+      <img src="images/kingdoms-gambit-logo.svg" alt="The Kingdom's Gambit" class="hero-logo" />
+      <p class="hero-sub">
+        The Kingdom's Gambit is an umbrella for ventures rooted in Vermont —
+        technology, design, consulting, and more. Every project is another move on the board.
+      </p>
+      <a href="#ventures" class="hero-cta">See what we do</a>
+    </div>
+    <span class="hero-scroll">Scroll to explore</span>
+  </section>
+
+  <!-- ── Ventures ── -->
+  <section id="ventures">
+    <div class="section-inner">
+      <div class="ventures-header">
+        <div>
+          <p class="section-label">Ventures</p>
+          <h2 class="section-heading">One brand.<br />Many moves.</h2>
+        </div>
+        <p class="section-body">
+          TKG isn't defined by a single business. It's a platform for building
+          whatever's next — connected by craft, curiosity, and a commitment to doing things right.
+        </p>
+      </div>
+
+      <div class="ventures-grid">
+
+        <div class="venture-card">
+          <svg class="venture-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="4" width="28" height="28" rx="2" stroke="#0F1B24" stroke-width="1.5"/>
+            <path d="M4 13h28M13 13v19" stroke="#0F1B24" stroke-width="1.5"/>
+          </svg>
+          <p class="venture-name">Consulting &amp; Advisory</p>
+          <p class="venture-desc">Strategic guidance for small businesses navigating growth, change, or technology.</p>
+        </div>
+
+        <div class="venture-card">
+          <svg class="venture-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="18" cy="18" r="13" stroke="#0F1B24" stroke-width="1.5"/>
+            <path d="M18 10v8l5 3" stroke="#0F1B24" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <p class="venture-name">AI &amp; Technology</p>
+          <p class="venture-desc">Practical AI tools and technology services that actually fit how you work.</p>
+        </div>
+
+        <div class="venture-card">
+          <svg class="venture-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="8" width="24" height="20" rx="1" stroke="#0F1B24" stroke-width="1.5"/>
+            <path d="M6 13h24" stroke="#0F1B24" stroke-width="1.5"/>
+            <circle cx="10" cy="10.5" r="1" fill="#0F1B24"/>
+            <circle cx="14" cy="10.5" r="1" fill="#0F1B24"/>
+          </svg>
+          <p class="venture-name">Web Design</p>
+          <p class="venture-desc">Clean, purposeful websites built to last — not just to impress for a month.</p>
+        </div>
+
+        <div class="venture-card">
+          <svg class="venture-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 26L18 10l8 16" stroke="#0F1B24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12.5 21h11" stroke="#0F1B24" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <p class="venture-name">Graphic Design</p>
+          <p class="venture-desc">Logos, print, and visual identity for people who care about the details.</p>
+        </div>
+
+        <div class="venture-card">
+          <svg class="venture-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="14" width="20" height="14" rx="1" stroke="#0F1B24" stroke-width="1.5"/>
+            <path d="M13 14V11a5 5 0 0110 0v3" stroke="#0F1B24" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <p class="venture-name">Screen Printing</p>
+          <p class="venture-desc">Custom apparel and merchandise printed with craft and care, locally.</p>
+        </div>
+
+        <div class="venture-card">
+          <svg class="venture-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6C12.477 6 8 10.477 8 16c0 7 10 20 10 20s10-13 10-20c0-5.523-4.477-10-10-10z" stroke="#0F1B24" stroke-width="1.5"/>
+            <circle cx="18" cy="16" r="3.5" stroke="#0F1B24" stroke-width="1.5"/>
+          </svg>
+          <p class="venture-name">Vermont Roots</p>
+          <p class="venture-desc">Farm products, hospitality, and local projects — built for the Northeast Kingdom.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── Contact ── -->
+  <section id="contact">
+    <div class="section-inner">
+      <div class="contact-inner">
+        <div>
+          <p class="section-label">Contact</p>
+          <h2 class="section-heading">Let's make something.</h2>
+          <p class="section-body" style="margin-top:1rem;">
+            Whether you have a project in mind or just want to talk through an idea,
+            reach out. No pressure, no pitch — just a conversation.
+          </p>
+
+          <div class="contact-details" style="margin-top:3rem;">
+            <div class="contact-detail-item">
+              <p class="contact-detail-label">Based in</p>
+              <p class="contact-detail-value">Vermont's Northeast Kingdom</p>
+            </div>
+            <div class="contact-detail-item">
+              <p class="contact-detail-label">Email</p>
+              <p class="contact-detail-value">
+                <a href="mailto:hello@kingdomsgambit.com">hello@kingdomsgambit.com</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required />
+            </div>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="you@example.com" required />
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="interest">What are you interested in?</label>
+            <select id="interest" name="interest">
+              <option value="">Select a venture</option>
+              <option>Consulting &amp; Advisory</option>
+              <option>AI &amp; Technology</option>
+              <option>Web Design</option>
+              <option>Graphic Design</option>
+              <option>Screen Printing</option>
+              <option>Something else</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell me a bit about what you're working on…" required></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <span class="footer-mark">&copy; 2026 The Kingdom's Gambit</span>
+    <span class="footer-tagline">Rooted in Vermont.</span>
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Contact form (replace with your backend/service)
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.form-submit');
+      btn.textContent = 'Sent.';
+      btn.style.background = '#4a5f4f';
+      btn.disabled = true;
+    }
+  </script>
+</body>
+</html>
