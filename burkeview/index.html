@@ -1,1 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Burke View | East Burke, Vermont</title>
+<meta name="description" content="A one-bedroom apartment just outside East Burke, Vermont. Kingdom Trails at the door. Burke Mountain five minutes up the road.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --warm-white:#F8F7F3;
+    --graphite:#30343A;
+    --burke-blue:#607A90;
+    --granite:#8B9198;
+    --evergreen:#516454;
+    --golden-hour:#C79B57;
+    --max-width:1180px;
+  }
 
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    font-family:'Work Sans', -apple-system, sans-serif;
+    color:var(--graphite);
+    background:var(--warm-white);
+    font-weight:300;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* Headline type: swap to the licensed "NationalPark" typeface via @font-face
+     when the font file is available (see brand design-philosophy doc). Fraunces
+     is the interim fallback and was chosen for a similarly restrained, non-decorative feel. */
+  h1,h2,h3,.wordmark-text{
+    font-family:'NationalPark','Fraunces', Georgia, serif;
+    font-weight:500;
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+  a{ color:inherit; text-decoration:none; }
+  img{ max-width:100%; display:block; }
+  .wrap{ max-width:var(--max-width); margin:0 auto; padding:0 32px; }
+  .eyebrow{
+    font-size:13px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--granite);
+    font-weight:500;
+  }
+
+  /* Buttons */
+  .btn{
+    display:inline-block;
+    padding:14px 30px;
+    border-radius:2px;
+    font-size:14px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    font-weight:500;
+    transition:opacity 0.2s ease;
+  }
+  .btn:hover{ opacity:0.85; }
+  .btn-primary{ background:var(--burke-blue); color:var(--warm-white); }
+  .btn-outline{ border:1px solid var(--graphite); color:var(--graphite); }
+
+  /* Header */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(248,247,243,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(48,52,58,0.08);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 0;
+  }
+  /* Brand: serif wordmark + pine tree lockup, supplied as a PNG (images/burkeview1.png).
+     It's black/evergreen line art on a transparent background, so on the dark
+     footer it sits inside a small warm-white chip to keep its true colors. */
+  .brand{ display:flex; align-items:center; }
+  .brand-logo{ height:56px; width:auto; display:block; }
+  .brand-logo-chip{
+    display:inline-flex; align-items:center;
+    background:var(--warm-white);
+    padding:10px 16px;
+    border-radius:3px;
+  }
+  footer .brand-logo{ height:52px; }
+  .nav-links{ display:flex; align-items:center; gap:36px; }
+  .nav-links a{ font-size:13px; letter-spacing:0.06em; text-transform:uppercase; font-weight:500; }
+  .nav-links a:hover{ color:var(--burke-blue); }
+  .nav-cta{ display:none; }
+  @media(min-width:860px){ .nav-cta{ display:inline-block; } }
+  .menu-toggle{ display:none; background:none; border:none; font-size:22px; cursor:pointer; }
+
+  @media (max-width:859px){
+    .nav-links{ display:none; }
+    .menu-toggle{ display:block; }
+  }
+
+  /* Hero: full-bleed photo, breaks out of the .wrap container */
+  .hero{
+    position:relative;
+    width:100%;
+    min-height:88vh;
+    display:flex;
+    align-items:flex-end;
+    background-image:linear-gradient(to top, rgba(12,14,16,0.92) 0%, rgba(12,14,16,0.6) 40%, rgba(12,14,16,0.25) 70%, rgba(12,14,16,0.1) 100%), url('images/IMG_8827%20copy.jpg');
+    background-size:cover;
+    background-position:center 60%;
+    padding:64px 0 56px;
+  }
+  .hero-content{ position:relative; z-index:1; width:100%; text-shadow:0 2px 16px rgba(0,0,0,0.45); }
+  .hero .eyebrow{ color:rgba(248,247,243,0.92); }
+  .hero h1{ font-size:clamp(40px,6.4vw,72px); line-height:1.05; margin:14px 0 24px; color:var(--warm-white); }
+  .hero p{ font-size:18px; color:rgba(248,247,243,0.95); max-width:46ch; margin:0 0 32px; }
+  @media(max-width:640px){ .hero{ min-height:76vh; background-position:center 65%; } }
+
+  /* Trust badge: Airbnb Guest Favorite + rating, for use over the dark hero
+     photo and on the dark booking card. Restrained, no shadow or color accent
+     beyond the existing palette. */
+  .trust-badge{
+    display:inline-flex; align-items:center; gap:12px;
+    padding:10px 16px;
+    border:1px solid rgba(248,247,243,0.35);
+    border-radius:2px;
+    background:rgba(248,247,243,0.08);
+    backdrop-filter:blur(4px);
+    margin-bottom:20px;
+    text-shadow:none;
+  }
+  .trust-badge svg{ width:20px; height:20px; flex-shrink:0; color:var(--warm-white); }
+  .trust-badge-text{ display:flex; flex-direction:column; line-height:1.3; }
+  .trust-badge-text strong{ font-size:12.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--warm-white); font-weight:600; font-family:'Work Sans',sans-serif; }
+  .trust-badge-text span{ font-size:12px; color:rgba(248,247,243,0.7); }
+  .booking-card .trust-badge{ margin:16px 0 0; background:rgba(248,247,243,0.06); }
+
+  /* Section spacing */
+  section{ padding:88px 0; }
+  section.alt{ background:#F1EEE7; }
+  .section-head{ margin-bottom:48px; }
+  .section-head h2{ font-size:clamp(30px,4vw,42px); margin-top:12px; }
+
+  /* Apartment section: wide photo on top, copy split below it */
+  .apt-hero-photo{ width:100%; aspect-ratio:21/9; object-fit:cover; border-radius:2px; display:block; margin-bottom:48px; }
+  .apt-copy-grid{ display:grid; gap:32px 56px; }
+  @media(min-width:800px){ .apt-copy-grid{ grid-template-columns:1fr 1.3fr; align-items:start; } }
+  .apt-copy-body p{ color:#4b4f55; margin-bottom:20px; }
+
+  /* What's Here: full-width icon amenity grid, styled after the mockup's amenities strip */
+  .whats-here{ margin-top:72px; padding-top:56px; border-top:1px solid rgba(48,52,58,0.12); }
+  .whats-here .section-head{ margin-bottom:36px; }
+  .amenity-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:36px 28px; }
+  @media(min-width:640px){ .amenity-grid{ grid-template-columns:repeat(3,1fr); } }
+  .amenity-item{ display:flex; flex-direction:column; gap:14px; }
+  .amenity-icon{
+    width:46px; height:46px; border-radius:50%;
+    background:#F1EEE7; color:var(--burke-blue);
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+  .amenity-icon svg{ width:22px; height:22px; }
+  .amenity-item h4{ font-family:'Work Sans',sans-serif; font-size:15px; font-weight:500; margin:0; }
+  .amenity-item p{ font-size:13.5px; color:var(--granite); margin:0; line-height:1.5; }
+
+  /* Interior photo gallery, below the amenities */
+  .apt-gallery{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:64px; }
+  .apt-gallery img{ width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:2px; display:block; }
+  @media(max-width:700px){ .apt-gallery{ grid-template-columns:1fr 1fr; } .apt-gallery img:first-child{ grid-column:1/-1; aspect-ratio:16/9; } }
+
+  /* Kingdom section */
+  .kingdom-grid{ display:grid; gap:28px; }
+  @media(min-width:760px){ .kingdom-grid{ grid-template-columns:repeat(3,1fr); } }
+  .kingdom-card h3{ font-size:22px; margin:20px 0 10px; }
+  .kingdom-card p{ color:#4b4f55; font-size:15px; margin:0; }
+  .kingdom-card img{ width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:2px; display:block; }
+
+  /* Stay section */
+  .stay-grid{ display:grid; gap:56px; align-items:center; }
+  @media(min-width:900px){ .stay-grid{ grid-template-columns:0.9fr 1.1fr; } }
+  .stay-copy p{ color:#4b4f55; margin-bottom:20px; }
+  .signature{ font-family:'Fraunces',serif; font-style:italic; font-size:18px; margin-top:24px; }
+  .tag-row{ display:flex; flex-wrap:wrap; gap:12px; margin:28px 0; }
+  .tag{
+    font-size:12px; letter-spacing:0.06em; text-transform:uppercase;
+    border:1px solid rgba(48,52,58,0.25); padding:8px 14px; border-radius:2px;
+    color:var(--graphite);
+  }
+
+  .booking-card{
+    background:var(--graphite); color:var(--warm-white);
+    padding:40px; border-radius:2px;
+  }
+  .booking-price{ font-family:'Fraunces',serif; font-size:36px; margin-bottom:4px; }
+  .booking-price span{ font-size:14px; font-family:'Work Sans',sans-serif; color:rgba(248,247,243,0.6); }
+  .booking-card .btn-primary{ width:100%; text-align:center; margin-top:24px; background:var(--golden-hour); color:var(--graphite); }
+  .booking-note{ font-size:13px; color:rgba(248,247,243,0.65); margin-top:16px; }
+
+  /* Footer */
+  footer{ background:var(--graphite); color:rgba(248,247,243,0.8); padding:64px 0 32px; }
+  .footer-grid{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:40px; padding-bottom:40px; border-bottom:1px solid rgba(248,247,243,0.15); }
+  .footer-links{ display:flex; flex-wrap:wrap; gap:32px; }
+  .footer-links a{ font-size:13px; letter-spacing:0.05em; text-transform:uppercase; }
+  .footer-links a:hover{ color:var(--golden-hour); }
+  .footer-bottom{ padding-top:24px; font-size:12px; color:rgba(248,247,243,0.45); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#top" class="brand" aria-label="Burke View, East Burke Vermont">
+      <img class="brand-logo" src="images/burkeview1.png" alt="Burke View, East Burke, VT">
+    </a>
+    <nav class="nav-links">
+      <a href="#apartment">The Apartment</a>
+      <a href="#amenities">Amenities</a>
+      <a href="#area">The Area</a>
+      <a href="#stay">Your Stay</a>
+    </nav>
+    <a class="btn btn-primary nav-cta" href="https://www.airbnb.com/rooms/48905072" target="_blank" rel="noopener">Check Availability</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-content">
+      <span class="trust-badge">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6.26L22 9.77l-5.2 4.87L18.18 21 12 17.27 5.82 21 7.2 14.64 2 9.77l7.1-1.01L12 2.5Z"/></svg>
+        <span class="trust-badge-text">
+          <strong>Guest Favorite</strong>
+          <span>4.96 rating on Airbnb</span>
+        </span>
+      </span>
+      <p class="eyebrow">Vermont's Northeast Kingdom</p>
+      <h1>Wake up to the mountain.</h1>
+      <p>A vacation rental in East Burke owned and operated by locals. Kingdom Trails start at the front door. Burke Mountain is five minutes up the road.</p>
+      <a class="btn btn-primary" href="https://www.airbnb.com/rooms/48905072" target="_blank" rel="noopener">Check Availability</a>
+    </div>
+  </section>
+
+  <!-- APARTMENT -->
+  <section id="apartment">
+    <div class="wrap">
+      <img class="apt-hero-photo" src="images/house.jpg" alt="Burke View apartment, exterior">
+      <div class="apt-copy-grid">
+        <div class="apt-copy-head">
+          <p class="eyebrow">The Apartment</p>
+          <h2>Your own space, at the base of the mountain.</h2>
+        </div>
+        <div class="apt-copy-body">
+          <p>Burke View is situated at the base of Burke Mountain. Kingdom Trails are accessible directly from the property. And you can be on Burke Mountain's chairlift in literally a few minutes.</p>
+          <p>The space is a 1-bedroom/1 bath apartment with a fully equipped kitchen and open living area with gorgeous views of Burke Mountain. The bedroom has a king sized bed. The bathroom is en suite off of the bedroom with a stand up shower. The kitchen and living room are open-concept with a queen sofa bed. Sleeps 2 very comfortably and up to 4 utilizing the pull out.</p>
+        </div>
+      </div>
+
+      <!-- WHAT'S HERE -->
+      <div class="whats-here" id="amenities">
+        <div class="section-head">
+          <p class="eyebrow">What's Here</p>
+        </div>
+        <div class="amenity-grid">
+          <div class="amenity-item">
+            <span class="amenity-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 16 10 13.5 10 17 15 7 15 10.5 10 8 10Z"/><line x1="12" y1="15" x2="12" y2="21"/></svg>
+            </span>
+            <h4>Private Yard</h4>
+            <p>Dining table, fire pit and grill, away from the main house.</p>
+          </div>
+          <div class="amenity-item">
+            <span class="amenity-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C9 6 7 9 7 13a5 5 0 0 0 10 0c0-2-1-4-2-5 .3 2-1 3-2 3-1.5 0-2-1.5-1-3C13 6 12.5 4 12 2Z"/></svg>
+            </span>
+            <h4>Fire Pit &amp; Grill</h4>
+            <p>Cook out and gather around the fire after a day outside.</p>
+          </div>
+          <div class="amenity-item">
+            <span class="amenity-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="20" x2="14" y2="4"/><line x1="18" y1="20" x2="10" y2="4"/><line x1="4.5" y1="20" x2="8" y2="20"/><line x1="16" y1="20" x2="19.5" y2="20"/></svg>
+            </span>
+            <h4>Bike &amp; Ski Storage</h4>
+            <p>Indoor space for bike and ski storage.</p>
+          </div>
+          <div class="amenity-item">
+            <span class="amenity-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9a12 12 0 0 1 16 0"/><path d="M7 12.5a8 8 0 0 1 10 0"/><path d="M10 16a4 4 0 0 1 4 0"/><circle cx="12" cy="19" r="1" fill="currentColor" stroke="none"/></svg>
+            </span>
+            <h4>High-Speed Wifi</h4>
+            <p>Fast enough to work remotely or stream after a ride.</p>
+          </div>
+          <div class="amenity-item">
+            <span class="amenity-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><circle cx="12" cy="13" r="5"/><circle cx="12" cy="13" r="1.6"/><line x1="7" y1="6" x2="9" y2="6"/></svg>
+            </span>
+            <h4>Washer &amp; Dryer</h4>
+            <p>In-unit laundry, no need to pack for every scenario.</p>
+          </div>
+          <div class="amenity-item">
+            <span class="amenity-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="21"/><line x1="4.5" y1="7.5" x2="19.5" y2="16.5"/><line x1="19.5" y1="7.5" x2="4.5" y2="16.5"/></svg>
+            </span>
+            <h4>Air Conditioning</h4>
+            <p>Comfortable through the warmer months, too.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- INTERIOR GALLERY -->
+      <div class="apt-gallery">
+        <img src="images/livingroom.jpg" alt="Living room with views toward Burke Mountain">
+        <img src="images/bedroom.jpg" alt="Bedroom with king bed">
+        <img src="images/kitchen.jpg" alt="Kitchen">
+      </div>
+    </div>
+  </section>
+
+  <!-- THE KINGDOM / AREA -->
+  <section id="area" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">The Area</p>
+        <h2>Out the door, into the Kingdom.</h2>
+      </div>
+      <div class="kingdom-grid">
+		<div class="kingdom-card">
+          <img src="images/kingdomtrails.jpg" alt="Kingdom Trails singletrack">
+          <h3>Kingdom Trails</h3>
+          <p>Enjoy 100+ miles of world-class singletrack from your front door.</p>
+        </div>
+        <div class="kingdom-card">
+          <img src="images/burkemountain.jpg" alt="Burke Mountain in winter">
+          <h3>Burke Mountain</h3>
+          <p>Skiers' best kept secret. Uncrowded slopes and New England charm with over 2,000-feet of vertical drop.</p>
+        </div>
+
+        <div class="kingdom-card">
+          <img src="images/lakewilloughby.jpg" alt="Lake Willoughby">
+          <h3>Lake Willoughby</h3>
+          <p>A stunning glacial lake in Westmore, famous for its crystal-clear, deep waters and dramatic, fjord-like setting between 1,500-foot cliffs from the water's edge</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- YOUR STAY -->
+  <section id="stay">
+    <div class="wrap stay-grid">
+      <div class="stay-copy">
+        <p class="eyebrow">Your Stay</p>
+        <h2>A note from your hosts</h2>
+        <p>We live on the property with our two kids, two dogs, chickens and guinea fowl. The apartment is completely separate from the house. You'll occasionally see us around the yard.</p>
+        <p>We're happy to help if you need anything - trail advice, recommendations, directions to town — or we can leave you to it.</p>
+        <p class="signature">— Sara &amp; Dana</p>
+
+        <div class="tag-row">
+          <span class="tag">Self check-in</span>
+          <span class="tag">No pets</span>
+          <span class="tag">See cancellation policy on Airbnb</span>
+        </div>
+      </div>
+
+      <div class="booking-card">
+        <div class="booking-price">Starts at $125 <span>per night</span></div>
+        <p style="font-size:14px; color:rgba(248,247,243,0.75); margin:12px 0 0;">1 bedroom · 1 bath · East Burke, VT</p>
+        <span class="trust-badge">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6.26L22 9.77l-5.2 4.87L18.18 21 12 17.27 5.82 21 7.2 14.64 2 9.77l7.1-1.01L12 2.5Z"/></svg>
+          <span class="trust-badge-text">
+            <strong>Guest Favorite</strong>
+            <span>4.96 rating on Airbnb</span>
+          </span>
+        </span>
+        <a class="btn btn-primary" href="https://www.airbnb.com/rooms/48905072" target="_blank" rel="noopener">Check Availability on Airbnb</a>
+        <p class="booking-note">Rates and exact availability are confirmed on Airbnb.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a href="#top" class="brand brand-logo-chip" aria-label="Burke View, East Burke Vermont">
+          <img class="brand-logo" src="images/burkeview1.png" alt="Burke View, East Burke, VT">
+        </a>
+      </div>
+      <nav class="footer-links">
+        <a href="#apartment">The Apartment</a>
+        <a href="#apartment">Photos</a>
+        <a href="#area">The Area</a>
+        <a href="#stay">About</a>
+        <a href="mailto:smbres@gmail.com">Contact</a>
+      </nav>
+    </div>
+    <div class="footer-bottom wrap" style="padding-left:0;padding-right:0;">
+      <span>© <span id="year"></span> Burke View</span>
+      <span>East Burke, Vermont</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
