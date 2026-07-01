@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Kingdom's Gambit</title>
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -126,7 +127,7 @@
     }
 
     .hero-logo {
-      width: clamp(240px, 40vw, 520px);
+      width: clamp(340px, 60vw, 780px);
       display: block;
       margin-bottom: 2rem;
       filter: brightness(0) invert(1);
@@ -226,8 +227,8 @@
       line-height: 1.9;
     }
 
-    /* ── Ventures ── */
-    #ventures {
+    /* ── Services (What We Do) ── */
+    #services {
       background: var(--white);
     }
 
@@ -275,6 +276,200 @@
       font-size: 0.82rem;
       color: var(--granite);
       line-height: 1.7;
+    }
+
+    /* ── Featured Work ── */
+    #work {
+      background: var(--snow);
+    }
+
+    .work-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: end;
+      margin-bottom: 4rem;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .work-card {
+      background: var(--white);
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .work-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(15, 27, 36, 0.1);
+    }
+
+    .work-card.flagship {
+      grid-column: 1 / -1;
+    }
+
+    .work-card-image {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      display: block;
+      background: #1e2e38;
+    }
+
+    .work-card.flagship .work-card-image {
+      aspect-ratio: 21 / 8;
+    }
+
+    .work-card-body {
+      padding: 1.75rem 2rem;
+    }
+
+    .work-card-label {
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--evergreen);
+      margin-bottom: 0.5rem;
+    }
+
+    .work-card-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--midnight);
+      margin-bottom: 0.6rem;
+    }
+
+    .work-card.flagship .work-card-title {
+      font-size: 1.3rem;
+    }
+
+    .work-card-desc {
+      font-size: 0.82rem;
+      color: var(--granite);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+      max-width: 560px;
+    }
+
+    .work-card-link {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--midnight);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: color 0.2s;
+    }
+
+    .work-card-link::after {
+      content: '→';
+      font-size: 0.8rem;
+      transition: transform 0.2s;
+    }
+
+    .work-card-link:hover {
+      color: var(--evergreen);
+    }
+
+    .work-card-link:hover::after {
+      transform: translateX(3px);
+    }
+
+    /* ── Current Ventures ── */
+    #current-ventures {
+      background: var(--white);
+      padding-top: 4rem;
+      padding-bottom: 5rem;
+    }
+
+    .ventures-compact-intro {
+      max-width: 620px;
+      margin-bottom: 3rem;
+    }
+
+    .ventures-compact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: #E8E7E4;
+    }
+
+    .venture-compact-card {
+      background: var(--white);
+      padding: 2rem;
+      transition: background 0.2s;
+    }
+
+    .venture-compact-card:hover {
+      background: var(--snow);
+    }
+
+    .venture-compact-name {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: var(--tracking-wide);
+      color: var(--midnight);
+      margin-bottom: 0.4rem;
+    }
+
+    .venture-compact-desc {
+      font-size: 0.78rem;
+      color: var(--granite);
+      line-height: 1.65;
+    }
+
+    /* ── Closing CTA ── */
+    #cta {
+      background: var(--midnight);
+      text-align: center;
+      padding: 6rem 3rem;
+    }
+
+    .cta-inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .cta-heading {
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 300;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    .cta-body {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.9;
+      margin-bottom: 2.5rem;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+      padding: 1rem 2.5rem;
+      border: 1px solid rgba(255,255,255,0.25);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .cta-btn:hover {
+      border-color: var(--evergreen);
+      color: var(--evergreen);
     }
 
     /* ── Divider ── */
@@ -440,12 +635,29 @@
       color: rgba(255,255,255,0.18);
     }
 
+    .footer-credit {
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.2);
+    }
+
+    .footer-credit a {
+      color: rgba(255,255,255,0.35);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-credit a:hover {
+      color: rgba(255,255,255,0.65);
+    }
+
     /* ── Responsive ── */
     @media (max-width: 900px) {
       nav { padding: 1.5rem 1.75rem; }
       .nav-links { display: none; }
 
       section { padding: 5rem 1.75rem; }
+      #current-ventures { padding: 3rem 1.75rem 4rem; }
+      #cta { padding: 4rem 1.75rem; }
       .divider { margin: 0 1.75rem; }
 
       #hero { padding: 0 1.75rem; }
@@ -453,6 +665,13 @@
 
       .ventures-header { grid-template-columns: 1fr; gap: 1.5rem; }
       .ventures-grid { grid-template-columns: 1fr 1fr; }
+
+      .work-header { grid-template-columns: 1fr; gap: 1.5rem; }
+      .work-grid { grid-template-columns: 1fr 1fr; }
+      .work-card.flagship { grid-column: 1 / -1; }
+      .work-card.flagship .work-card-image { aspect-ratio: 16 / 9; }
+
+      .ventures-compact-grid { grid-template-columns: 1fr 1fr; }
 
       .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
       .form-row { grid-template-columns: 1fr; }
@@ -462,6 +681,9 @@
 
     @media (max-width: 560px) {
       .ventures-grid { grid-template-columns: 1fr; }
+      .work-grid { grid-template-columns: 1fr; }
+      .work-card.flagship { grid-column: 1; }
+      .ventures-compact-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -471,7 +693,8 @@
   <nav id="nav">
     <a href="#hero" class="nav-logo">TKG</a>
     <ul class="nav-links">
-      <li><a href="#ventures">Ventures</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#work">Work</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
@@ -481,25 +704,23 @@
     <div class="hero-inner">
       <img src="images/kingdoms-gambit-logo.svg" alt="The Kingdom's Gambit" class="hero-logo" />
       <p class="hero-sub">
-        The Kingdom's Gambit is an umbrella for ventures rooted in Vermont —
-        technology, design, consulting, and more. Every project is another move on the board.
+        The Kingdom's Gambit is a creative studio for brand identity, web design, AI-enabled digital consulting, and locally rooted ventures.
       </p>
-      <a href="#ventures" class="hero-cta">See what we do</a>
+      <a href="#services" class="hero-cta">Make Your Next Move</a>
     </div>
     <span class="hero-scroll">Scroll to explore</span>
   </section>
 
-  <!-- ── Ventures ── -->
-  <section id="ventures">
+  <!-- ── What We Do ── -->
+  <section id="services">
     <div class="section-inner">
       <div class="ventures-header">
         <div>
-          <p class="section-label">Ventures</p>
-          <h2 class="section-heading">One brand.<br />Many moves.</h2>
+          <p class="section-label">What We Do</p>
+          <h2 class="section-heading">Building brands, businesses, and digital experiences from Vermont's Northeast Kingdom.</h2>
         </div>
         <p class="section-body">
-          TKG isn't defined by a single business. It's a platform for building
-          whatever's next — connected by craft, curiosity, and a commitment to doing things right.
+          TKG is a creative studio helping businesses make their next move through thoughtful branding, design, technology, and strategy.
         </p>
       </div>
 
@@ -509,18 +730,20 @@
           <svg class="venture-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="4" y="4" width="28" height="28" rx="2" stroke="#0F1B24" stroke-width="1.5"/>
             <path d="M4 13h28M13 13v19" stroke="#0F1B24" stroke-width="1.5"/>
+            <circle cx="21" cy="22" r="3" stroke="#0F1B24" stroke-width="1.5"/>
           </svg>
-          <p class="venture-name">Consulting &amp; Advisory</p>
-          <p class="venture-desc">Strategic guidance for small businesses navigating growth, change, or technology.</p>
+          <p class="venture-name">AI &amp; Digital Consulting</p>
+          <p class="venture-desc">Practical strategy, tools, workflows, and training to help small businesses and local organizations use technology and AI with confidence.</p>
         </div>
 
         <div class="venture-card">
           <svg class="venture-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="18" cy="18" r="13" stroke="#0F1B24" stroke-width="1.5"/>
-            <path d="M18 10v8l5 3" stroke="#0F1B24" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M10 26L18 10l8 16" stroke="#0F1B24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12.5 21h11" stroke="#0F1B24" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="18" cy="10" r="2" fill="#0F1B24" opacity="0.4"/>
           </svg>
-          <p class="venture-name">AI &amp; Technology</p>
-          <p class="venture-desc">Practical AI tools and technology services that actually fit how you work.</p>
+          <p class="venture-name">Brand Identity &amp; Design</p>
+          <p class="venture-desc">Logos, visual systems, merchandise, print materials, signage, and creative direction for brands that need to look polished and cohesive.</p>
         </div>
 
         <div class="venture-card">
@@ -529,36 +752,10 @@
             <path d="M6 13h24" stroke="#0F1B24" stroke-width="1.5"/>
             <circle cx="10" cy="10.5" r="1" fill="#0F1B24"/>
             <circle cx="14" cy="10.5" r="1" fill="#0F1B24"/>
+            <path d="M11 20h8M11 24h5" stroke="#0F1B24" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
-          <p class="venture-name">Web Design</p>
-          <p class="venture-desc">Clean, purposeful websites built to last - not just to impress for a month.</p>
-        </div>
-
-        <div class="venture-card">
-          <svg class="venture-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10 26L18 10l8 16" stroke="#0F1B24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M12.5 21h11" stroke="#0F1B24" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-          <p class="venture-name">Graphic Design</p>
-          <p class="venture-desc">Logos, print, and visual identity for people who care about the details.</p>
-        </div>
-
-        <div class="venture-card">
-          <svg class="venture-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="8" y="14" width="20" height="14" rx="1" stroke="#0F1B24" stroke-width="1.5"/>
-            <path d="M13 14V11a5 5 0 0110 0v3" stroke="#0F1B24" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-          <p class="venture-name">Kit design</p>
-          <p class="venture-desc">Cycling apparel and merchandise design consultation.</p>
-        </div>
-
-        <div class="venture-card">
-          <svg class="venture-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M18 6C12.477 6 8 10.477 8 16c0 7 10 20 10 20s10-13 10-20c0-5.523-4.477-10-10-10z" stroke="#0F1B24" stroke-width="1.5"/>
-            <circle cx="18" cy="16" r="3.5" stroke="#0F1B24" stroke-width="1.5"/>
-          </svg>
-          <p class="venture-name">Vermont Roots</p>
-          <p class="venture-desc">Farm products, hospitality and local projects - built for the Northeast Kingdom.</p>
+          <p class="venture-name">Websites &amp; Digital Experiences</p>
+          <p class="venture-desc">Clean, useful websites and digital assets that help businesses tell their story, share information, and connect with customers.</p>
         </div>
 
       </div>
@@ -567,16 +764,116 @@
 
   <div class="divider"></div>
 
+  <!-- ── Featured Work ── -->
+  <section id="work">
+    <div class="section-inner">
+      <div class="work-header">
+        <div>
+          <p class="section-label">Featured Work</p>
+          <h2 class="section-heading">End-to-end brand systems, built from the ground up.</h2>
+        </div>
+        <p class="section-body">
+          Every project is presented as a complete story — from the challenge through the creative work to the final result.
+        </p>
+      </div>
+
+      <div class="work-grid">
+
+        <!-- Flagship: Pedal Power -->
+        <div class="work-card flagship">
+          <div class="work-card-image" style="background: linear-gradient(135deg, #1a2e3a 0%, #263d2e 100%);"></div>
+          <div class="work-card-body">
+            <p class="work-card-label">Flagship Case Study</p>
+            <p class="work-card-title">Pedal Power Training Solutions</p>
+            <p class="work-card-desc">Took a cycling business from a basic idea to a complete brand system, including identity, website, cycling kits, softgoods, stickers, signage, and marketing assets.</p>
+            <a href="#" class="work-card-link">Explore Project</a>
+          </div>
+        </div>
+
+        <!-- Burke View -->
+        <div class="work-card">
+          <div class="work-card-image" style="background: linear-gradient(135deg, #1e2c38 0%, #2e3a30 100%);"></div>
+          <div class="work-card-body">
+            <p class="work-card-label">Case Study</p>
+            <p class="work-card-title">Burke View</p>
+            <p class="work-card-desc">Brand, web, photography, and guest experience work for a Vermont Airbnb property in the heart of the Northeast Kingdom.</p>
+            <a href="#" class="work-card-link">Explore Project</a>
+          </div>
+        </div>
+
+        <!-- Idyll Cycling -->
+        <div class="work-card">
+          <div class="work-card-image" style="background: linear-gradient(135deg, #1a2a3a 0%, #243040 100%);"></div>
+          <div class="work-card-body">
+            <p class="work-card-label">Side Project</p>
+            <p class="work-card-title">Idyll Cycling</p>
+            <p class="work-card-desc">A cycling-focused side project exploring identity, apparel, lifestyle, and visual storytelling.</p>
+            <a href="#" class="work-card-link">Explore Project</a>
+          </div>
+        </div>
+
+        <!-- TKG -->
+        <div class="work-card">
+          <div class="work-card-image" style="background: linear-gradient(135deg, #0f1b24 0%, #1e2e38 100%);"></div>
+          <div class="work-card-body">
+            <p class="work-card-label">Studio Brand</p>
+            <p class="work-card-title">The Kingdom's Gambit</p>
+            <p class="work-card-desc">The studio's own evolving brand system, including strategy, identity, merchandise, digital presence, and future ventures.</p>
+            <a href="#" class="work-card-link">Explore Project</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Current Ventures ── -->
+  <section id="current-ventures">
+    <div class="section-inner">
+      <div class="ventures-compact-intro">
+        <p class="section-label">Current Ventures</p>
+        <h2 class="section-heading" style="font-size: clamp(1.2rem, 2.5vw, 1.8rem);">A few of the things currently being built, tested, and grown under The Kingdom's Gambit umbrella.</h2>
+      </div>
+
+      <div class="ventures-compact-grid">
+
+        <div class="venture-compact-card">
+          <p class="venture-compact-name">Burke View Airbnb</p>
+          <p class="venture-compact-desc">A well-loved Airbnb in East Burke, Vermont. Ride the Kingdom Trails, gravel roads, and Burke Mountain from the doorstep.</p>
+        </div>
+
+        <div class="venture-compact-card">
+          <p class="venture-compact-name">Local NEK</p>
+          <p class="venture-compact-desc">Farm products, homemade goods, and jane-of-all-trades services rooted in East Burke and Vermont's Northeast Kingdom.</p>
+        </div>
+
+        <div class="venture-compact-card">
+          <p class="venture-compact-name">Merchandise &amp; Digital Products</p>
+          <p class="venture-compact-desc">TKG-branded gear, cycling apparel, and digital products in the works. More coming soon.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Closing CTA ── -->
+  <section id="cta">
+    <div class="cta-inner">
+      <h2 class="cta-heading">Have an idea, a brand, a website, or a project that needs a next move?</h2>
+      <p class="cta-body">Let's talk through it.</p>
+      <a href="#contact" class="cta-btn">Make Your Next Move</a>
+    </div>
+  </section>
+
   <!-- ── Contact ── -->
   <section id="contact">
     <div class="section-inner">
       <div class="contact-inner">
         <div>
           <p class="section-label">Contact</p>
-          <h2 class="section-heading">Let's make something.</h2>
+          <h2 class="section-heading">Your move.</h2>
           <p class="section-body" style="margin-top:1rem;">
-            Whether you have a project in mind or just want to talk through an idea,
-            reach out. 
+            Got something in mind? Get in touch.
           </p>
 
           <div class="contact-details" style="margin-top:3rem;">
@@ -607,12 +904,11 @@
           <div class="form-field">
             <label for="interest">What are you interested in?</label>
             <select id="interest" name="interest">
-              <option value="">Select a venture</option>
-              <option>Consulting &amp; Advisory</option>
-              <option>AI &amp; technology</option>
-              <option>Web design</option>
-              <option>Graphic design</option>
-              <option>Cycling kit design</option>
+              <option value="">Select a service or project</option>
+              <option>AI &amp; Digital Consulting</option>
+              <option>Brand Identity &amp; Design</option>
+              <option>Websites &amp; Digital Experiences</option>
+              <option>Burke View Airbnb</option>
               <option>Something else</option>
             </select>
           </div>
@@ -630,6 +926,7 @@
   <footer>
     <span class="footer-mark">&copy; 2026 The Kingdom's Gambit</span>
     <span class="footer-tagline">Make your next move.</span>
+    <span class="footer-credit">An offshoot of <a href="https://dpnation.com" target="_blank" rel="noopener">dpnation</a></span>
   </footer>
 
   <script>
