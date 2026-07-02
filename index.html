@@ -293,7 +293,7 @@
 
     .work-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 1.5rem;
     }
 
@@ -667,7 +667,6 @@
       .ventures-grid { grid-template-columns: 1fr 1fr; }
 
       .work-header { grid-template-columns: 1fr; gap: 1.5rem; }
-      .work-grid { grid-template-columns: 1fr 1fr; }
       .work-card.flagship { grid-column: 1 / -1; }
       .work-card.flagship .work-card-image { aspect-ratio: 16 / 9; }
 
@@ -682,7 +681,7 @@
     @media (max-width: 560px) {
       .ventures-grid { grid-template-columns: 1fr; }
       .work-grid { grid-template-columns: 1fr; }
-      .work-card.flagship { grid-column: 1; }
+      .work-card.flagship { grid-column: 1 / -1; }
       .ventures-compact-grid { grid-template-columns: 1fr; }
     }
   </style>
@@ -706,7 +705,7 @@
       <p class="hero-sub">
         The Kingdom's Gambit is a creative studio for brand identity, web design, AI-enabled digital consulting, and locally rooted ventures.
       </p>
-      <a href="#services" class="hero-cta">Make Your Next Move</a>
+      <a href="#services" class="hero-cta">Explore</a>
     </div>
     <span class="hero-scroll">Scroll to explore</span>
   </section>
@@ -785,7 +784,7 @@
           <div class="work-card-body">
             <p class="work-card-label">Flagship Case Study</p>
             <p class="work-card-title">Pedal Power Training Solutions</p>
-            <p class="work-card-desc">Took a cycling business from a basic idea to a complete brand system, including identity, website, cycling kits, softgoods, stickers, signage, and marketing assets.</p>
+            <p class="work-card-desc">Grew an operating cycling business into a complete brand system — identity, website, cycling kits, softgoods, stickers, signage, and marketing assets.</p>
             <a href="#" class="work-card-link">Explore Project</a>
           </div>
         </div>
@@ -805,9 +804,9 @@
         <div class="work-card">
           <div class="work-card-image" style="background: linear-gradient(135deg, #1a2a3a 0%, #243040 100%);"></div>
           <div class="work-card-body">
-            <p class="work-card-label">Side Project</p>
+            <p class="work-card-label">Brand Identity &amp; Digital</p>
             <p class="work-card-title">Idyll Cycling</p>
-            <p class="work-card-desc">A cycling-focused side project exploring identity, apparel, lifestyle, and visual storytelling.</p>
+            <p class="work-card-desc">A local cycling touring business in Vermont's Northeast Kingdom. Full brand identity, digital presence, and creative direction — built from the ground up.</p>
             <a href="#" class="work-card-link">Explore Project</a>
           </div>
         </div>
@@ -820,6 +819,17 @@
             <p class="work-card-title">The Kingdom's Gambit</p>
             <p class="work-card-desc">The studio's own evolving brand system, including strategy, identity, merchandise, digital presence, and future ventures.</p>
             <a href="#" class="work-card-link">Explore Project</a>
+          </div>
+        </div>
+
+        <!-- dpnation -->
+        <div class="work-card">
+          <div class="work-card-image" style="background: linear-gradient(135deg, #1c1c2a 0%, #2a2035 100%);"></div>
+          <div class="work-card-body">
+            <p class="work-card-label">Origin Brand</p>
+            <p class="work-card-title">dpnation</p>
+            <p class="work-card-desc">The first brand and website — the project that started it all. Where the ideas behind TKG were first put into practice.</p>
+            <a href="https://dpnation.com" class="work-card-link" target="_blank" rel="noopener">Visit Site</a>
           </div>
         </div>
 
@@ -839,7 +849,7 @@
 
         <div class="venture-compact-card">
           <p class="venture-compact-name">Burke View Airbnb</p>
-          <p class="venture-compact-desc">A well-loved Airbnb in East Burke, Vermont. Ride the Kingdom Trails, gravel roads, and Burke Mountain from the doorstep.</p>
+          <p class="venture-compact-desc">A popular vacation rental in East Burke, VT. Ride the Kingdom Trails, gravel roads, and Burke Mountain from the doorstep.</p>
         </div>
 
         <div class="venture-compact-card">
@@ -853,15 +863,6 @@
         </div>
 
       </div>
-    </div>
-  </section>
-
-  <!-- ── Closing CTA ── -->
-  <section id="cta">
-    <div class="cta-inner">
-      <h2 class="cta-heading">Have an idea, a brand, a website, or a project that needs a next move?</h2>
-      <p class="cta-body">Let's talk through it.</p>
-      <a href="#contact" class="cta-btn">Make Your Next Move</a>
     </div>
   </section>
 
