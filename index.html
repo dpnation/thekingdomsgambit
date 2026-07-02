@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Kingdom's Gambit</title>
   <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>emailjs.init('vLbE70x7f06SB5Bti');</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -937,13 +939,26 @@
       nav.classList.toggle('scrolled', window.scrollY > 60);
     });
 
-    // Contact form (replace with your backend/service)
+    // EmailJS contact form
     function handleSubmit(e) {
       e.preventDefault();
-      const btn = e.target.querySelector('.form-submit');
-      btn.textContent = 'Sent.';
-      btn.style.background = '#4a5f4f';
+      const form = e.target;
+      const btn = form.querySelector('.form-submit');
+
+      btn.textContent = 'Sending...';
       btn.disabled = true;
+
+      emailjs.sendForm('service_6xmnrou', 'template_lta8tah', form)
+        .then(() => {
+          btn.textContent = 'Sent.';
+          btn.style.background = '#4a5f4f';
+          form.reset();
+        })
+        .catch(() => {
+          btn.textContent = 'Something went wrong - try again.';
+          btn.style.background = '#8B3A3A';
+          btn.disabled = false;
+        });
     }
   </script>
 </body>
